@@ -1,0 +1,11 @@
+territory_id,territory_name,region,states,potential_value
+T01,Territory 1,Northeast,"AZ,IL,NY",1000000
+T02,Territory 2,Northeast,"PA,GA,OH",5000000
+T03,Territory 3,Northeast,"NC,VA,WI",4000000
+T04,Territory 4,Southeast,VA,4000000
+T05,Territory 5,Southeast,"MD,GA",2000000
+T06,Territory 6,Southeast,"FL,TX",1000000
+T07,Territory 7,Midwest,"WA,WI",5000000
+T08,Territory 8,Midwest,"TX,CA",2000000
+T09,Territory 9,West,TN,4000000
+T10,Territory 10,West,"NJ,MD,NY",5000000

@@ -1,0 +1,100 @@
+version: 2
+
+seeds:
+  - name: hcp_master
+    description: "Healthcare provider master data containing demographic and professional information"
+    columns:
+      - name: hcp_id
+        description: "Unique identifier for healthcare provider"
+      - name: first_name
+        description: "Healthcare provider's first name"
+      - name: last_name
+        description: "Healthcare provider's last name"
+      - name: specialty
+        description: "Medical specialty of the healthcare provider"
+      - name: practice_name
+        description: "Name of the healthcare provider's practice"
+      - name: state
+        description: "State where the healthcare provider practices"
+      - name: territory_id
+        description: "Territory identifier linked to territories table"
+
+  - name: hcp_visits
+    description: "Record of medical representative visits to healthcare providers"
+    columns:
+      - name: visit_id
+        description: "Unique identifier for the visit"
+      - name: hcp_id
+        description: "Foreign key linking to the healthcare provider"
+      - name: mr_id
+        description: "Medical representative identifier who made the visit"
+      - name: visit_date
+        description: "Date when the visit occurred"
+      - name: visit_type
+        description: "Type of visit (e.g., in-person, virtual)"
+      - name: product_discussed
+        description: "Primary product discussed during the visit"
+      - name: visit_outcome
+        description: "Outcome code of the visit"
+
+  - name: medical_representatives
+    description: "Medical sales representatives information and territory assignments"
+    columns:
+      - name: mr_id
+        description: "Unique identifier for the medical representative"
+      - name: first_name
+        description: "Medical representative's first name"
+      - name: last_name
+        description: "Medical representative's last name"
+      - name: email
+        description: "Email contact for the medical representative"
+      - name: phone
+        description: "Phone number for the medical representative"
+      - name: territory_id
+        description: "Territory assignment for the medical representative"
+      - name: hire_date
+        description: "Date when the representative was hired"
+
+  - name: prescriptions
+    description: "Prescription data for products by healthcare providers over time"
+    columns:
+      - name: hcp_id
+        description: "Healthcare provider who wrote the prescription"
+      - name: product
+        description: "Product that was prescribed"
+      - name: year_month
+        description: "Year and month of the prescription data (YYYY-MM format)"
+      - name: total_prescriptions
+        description: "Total number of prescriptions written in the period"
+      - name: total_patients
+        description: "Total number of unique patients prescribed to"
+      - name: new_patients
+        description: "Number of new patients prescribed to"
+
+  - name: products
+    description: "Product catalog with therapeutic area classifications"
+    columns:
+      - name: product_id
+        description: "Unique identifier for the product"
+      - name: product_name
+        description: "Name of the pharmaceutical product"
+      - name: therapeutic_area
+        description: "Therapeutic area the product belongs to"
+      - name: launch_date
+        description: "Date when the product was launched"
+      - name: status
+        description: "Current status of the product (active, discontinued, etc.)"
+
+  - name: territories
+    description: "Sales territory definitions and hierarchy"
+    columns:
+      - name: territory_id
+        description: "Unique identifier for the territory"
+      - name: territory_name
+        description: "Name of the sales territory"
+      - name: region
+        description: "Region the territory belongs to"
+      - name: district
+        description: "District within the region"
+      - name: manager_id
+        description: "ID of the manager responsible for the territory" 

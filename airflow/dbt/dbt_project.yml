@@ -16,6 +16,16 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
+seeds:
+  airflow_dbt_snowflake:
+    +enabled: true
+    hcp_master:
+      +column_types:
+        years_of_practice: integer
+        potential_score: integer
+        influence_score: integer
+        created_at: date
+
 models:
   airflow_dbt_snowflake:
     materialized: table

@@ -1,0 +1,6 @@
+product_id,product_name,therapeutic_area,launch_date,price_per_unit,annual_revenue_target
+P01,Cardiofix,Cardiovascular,2018-01-01,60,24000000
+P02,Diabetreat,Endocrinology,2019-05-15,104,46000000
+P03,Neuroheal,Neurology,2021-03-10,171,27000000
+P04,Immunoboost,Immunology,2020-11-22,61,14000000
+P05,Painrelief,Pain Management,2017-07-08,121,44000000
