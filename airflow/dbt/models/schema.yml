@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: information_schema
+    database: "{{ env_var('DBT_DATABASE', 'RAW') }}"
+    schema: information_schema
+    tables:
+      - name: tables
+        description: "Snowflake information schema tables view" 
