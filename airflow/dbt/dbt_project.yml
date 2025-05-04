@@ -25,7 +25,38 @@ seeds:
         potential_score: integer
         influence_score: integer
         created_at: date
+    prescriptions:
+      +column_types:
+        num_prescriptions: integer
+        total_units: integer
+    hcp_visits:
+      +column_types:
+        duration_minutes: integer
+        engagement_score: integer
+    products:
+      +column_types:
+        price_per_unit: float
+        annual_revenue_target: integer
+    territories:
+      +column_types:
+        potential_value: integer
 
 models:
   airflow_dbt_snowflake:
-    materialized: table
+    # Default materialization for all models
+    +materialized: view
+    
+    # Staging models
+    staging:
+      +materialized: view
+      +schema: staging
+    
+    # Intermediate models
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    
+    # Marts models (final layer)
+    marts:
+      +materialized: table
+      +schema: marts

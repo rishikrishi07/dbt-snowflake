@@ -1,0 +1,102 @@
+version: 2
+
+models:
+  - name: int_hcp_enriched
+    description: "Intermediate model for Healthcare Professionals enriched with territory information"
+    columns:
+      - name: hcp_id
+        description: "Unique identifier for the healthcare professional"
+        tests:
+          - unique
+          - not_null
+      - name: territory_name
+        description: "Name of the territory where the HCP is located"
+      - name: region
+        description: "Region where the HCP's territory is located"
+      - name: states
+        description: "States included in the HCP's territory"
+      - name: territory_potential_value
+        description: "Potential market value of the HCP's territory in dollars"
+
+  - name: int_hcp_visits_enriched
+    description: "Intermediate model for HCP visits with medical representative and HCP information"
+    columns:
+      - name: visit_id
+        description: "Unique identifier for the visit"
+        tests:
+          - unique
+          - not_null
+      - name: visit_date
+        description: "Date when the visit occurred"
+      - name: visit_type
+        description: "Type of visit (In-person, Virtual, Phone call)"
+      - name: duration_minutes
+        description: "Duration of the visit in minutes"
+      - name: outcome
+        description: "Outcome of the visit (Very Positive, Positive, Neutral, Negative, Very Negative)"
+      - name: engagement_score
+        description: "Engagement score of the visit (0-10)"
+      - name: products_discussed
+        description: "List of products discussed during the visit (comma-separated)"
+      - name: hcp_id
+        description: "Healthcare professional identifier associated with this visit"
+      - name: hcp_first_name
+        description: "First name of the healthcare professional"
+      - name: hcp_last_name
+        description: "Last name of the healthcare professional"
+      - name: hcp_specialty
+        description: "Medical specialty of the healthcare professional"
+      - name: hcp_facility
+        description: "Type of facility where the healthcare professional works"
+      - name: hcp_territory_id
+        description: "Territory to which the healthcare professional belongs"
+      - name: mr_id
+        description: "Medical representative identifier who conducted the visit"
+      - name: mr_first_name
+        description: "First name of the medical representative"
+      - name: mr_last_name
+        description: "Last name of the medical representative"
+      - name: mr_territory_ids
+        description: "Territories assigned to the medical representative (comma-separated)"
+
+  - name: int_prescriptions_enriched
+    description: "Intermediate model for prescriptions with HCP and product information"
+    columns:
+      - name: hcp_id
+        description: "Healthcare professional identifier who prescribed"
+      - name: product
+        description: "Product that was prescribed"
+      - name: year_month
+        description: "Year and month when the prescription was made (YYYY-MM)"
+      - name: year
+        description: "Year when the prescription was made"
+      - name: month
+        description: "Month when the prescription was made"
+      - name: num_prescriptions
+        description: "Number of prescriptions made in the given month"
+      - name: total_units
+        description: "Total units prescribed in the given month"
+      - name: hcp_first_name
+        description: "First name of the healthcare professional"
+      - name: hcp_last_name
+        description: "Last name of the healthcare professional"
+      - name: hcp_specialty
+        description: "Medical specialty of the healthcare professional"
+      - name: hcp_territory_id
+        description: "Territory to which the healthcare professional belongs"
+      - name: product_id
+        description: "Unique identifier for the product"
+      - name: therapeutic_area
+        description: "Therapeutic area of the product"
+      - name: price_per_unit
+        description: "Price per unit of the product in dollars"
+      - name: annual_revenue_target
+        description: "Annual revenue target for the product in dollars"
+      - name: estimated_revenue
+        description: "Estimated revenue generated from this prescription (total_units * price_per_unit)"
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - hcp_id
+            - product
+            - year_month 

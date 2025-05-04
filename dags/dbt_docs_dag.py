@@ -31,13 +31,13 @@ def get_snowflake_connection(**context):
 
 # DAG for dbt documentation
 with DAG(
-    'dbt_documentation',
+    '5_dbt_docs',
     default_args=default_args,
     description='Generate dbt documentation',
-    schedule=None,  # Manual trigger only
-    start_date=datetime(2024, 1, 1),
+    schedule_interval='0 6 * * *',  # Daily at 6 AM, adjust as needed
+    start_date=datetime(2023, 1, 1),
     catchup=False,
-    tags=['dbt', 'snowflake', 'docs'],
+    tags=['dbt', 'docs'],
 ) as dag:
     
     # Get Snowflake connection details

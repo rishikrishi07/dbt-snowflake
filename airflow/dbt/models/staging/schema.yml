@@ -1,0 +1,145 @@
+version: 2
+
+models:
+  - name: stg_hcp
+    description: "Staging model for Healthcare Professionals data"
+    columns:
+      - name: hcp_id
+        description: "Unique identifier for the healthcare professional"
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: "First name of the healthcare professional"
+      - name: last_name
+        description: "Last name of the healthcare professional"
+      - name: specialty
+        description: "Medical specialty of the healthcare professional"
+      - name: facility
+        description: "Type of facility where the healthcare professional works"
+      - name: years_of_practice
+        description: "Number of years the healthcare professional has been in practice"
+      - name: state
+        description: "State where the healthcare professional practices"
+      - name: city
+        description: "City where the healthcare professional practices"
+      - name: zip_code
+        description: "ZIP code of the healthcare professional's location"
+      - name: email
+        description: "Email address of the healthcare professional"
+      - name: phone
+        description: "Phone number of the healthcare professional"
+      - name: territory_id
+        description: "Territory to which the healthcare professional belongs"
+      - name: potential_score
+        description: "Potential value score of the healthcare professional (0-100)"
+      - name: influence_score
+        description: "Influence score of the healthcare professional (0-10)"
+      - name: created_at
+        description: "Date when the healthcare professional record was created"
+
+  - name: stg_hcp_visits
+    description: "Staging model for healthcare professional visits data"
+    columns:
+      - name: visit_id
+        description: "Unique identifier for the visit"
+        tests:
+          - unique
+          - not_null
+      - name: hcp_id
+        description: "Healthcare professional identifier associated with this visit"
+        tests:
+          - not_null
+      - name: mr_id
+        description: "Medical representative identifier who conducted the visit"
+        tests:
+          - not_null
+      - name: visit_date
+        description: "Date when the visit occurred"
+      - name: visit_type
+        description: "Type of visit (In-person, Virtual, Phone call)"
+      - name: duration_minutes
+        description: "Duration of the visit in minutes"
+      - name: outcome
+        description: "Outcome of the visit (Very Positive, Positive, Neutral, Negative, Very Negative)"
+      - name: engagement_score
+        description: "Engagement score of the visit (0-10)"
+      - name: products_discussed
+        description: "List of products discussed during the visit (comma-separated)"
+      - name: notes
+        description: "Notes from the visit"
+
+  - name: stg_prescriptions
+    description: "Staging model for prescription data"
+    columns:
+      - name: hcp_id
+        description: "Healthcare professional identifier who prescribed"
+        tests:
+          - not_null
+      - name: product
+        description: "Product that was prescribed"
+        tests:
+          - not_null
+      - name: year_month
+        description: "Year and month when the prescription was made (YYYY-MM)"
+        tests:
+          - not_null
+      - name: num_prescriptions
+        description: "Number of prescriptions made in the given month"
+      - name: total_units
+        description: "Total units prescribed in the given month"
+
+  - name: stg_medical_representatives
+    description: "Staging model for medical representatives data"
+    columns:
+      - name: mr_id
+        description: "Unique identifier for the medical representative"
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: "First name of the medical representative"
+      - name: last_name
+        description: "Last name of the medical representative"
+      - name: email
+        description: "Email address of the medical representative"
+      - name: hire_date
+        description: "Date when the medical representative was hired"
+      - name: territory_ids
+        description: "Territories assigned to the medical representative (comma-separated)"
+
+  - name: stg_territories
+    description: "Staging model for territory data"
+    columns:
+      - name: territory_id
+        description: "Unique identifier for the territory"
+        tests:
+          - unique
+          - not_null
+      - name: territory_name
+        description: "Name of the territory"
+      - name: region
+        description: "Region where the territory belongs"
+      - name: states
+        description: "States included in the territory (comma-separated)"
+      - name: potential_value
+        description: "Potential market value of the territory in dollars"
+
+  - name: stg_products
+    description: "Staging model for product data"
+    columns:
+      - name: product_id
+        description: "Unique identifier for the product"
+        tests:
+          - unique
+          - not_null
+      - name: product
+        description: "Name of the product"
+      - name: therapeutic_area
+        description: "Therapeutic area of the product"
+      - name: launch_date
+        description: "Date when the product was launched"
+      - name: price_per_unit
+        description: "Price per unit of the product in dollars"
+      - name: annual_revenue_target
+        description: "Annual revenue target for the product in dollars" 
