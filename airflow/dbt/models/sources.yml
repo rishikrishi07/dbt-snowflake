@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: public
+    database: raw
+    schema: public
+    tables:
+      - name: hcp_master
+        description: Raw data for healthcare professionals.
+      - name: hcp_visits
+        description: Raw data for visits to healthcare professionals.
+      - name: medical_representatives
+        description: Raw data for medical sales representatives.
+      - name: prescriptions
+        description: Raw data for prescriptions written by HCPs.
+      - name: products
+        description: Raw data for pharmaceutical products.
+      - name: territories
+        description: Raw data for sales territories.
+      - name: daily_sales
+        description: Daily sales data for incremental loading demo. 

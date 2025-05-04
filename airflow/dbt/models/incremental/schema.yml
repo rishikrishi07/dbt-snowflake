@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: daily_sales_incremental
+    description: "Incremental model for daily sales data"
+    columns:
+      - name: id
+        description: "Unique surrogate key for each sales record"
+        tests:
+          - unique
+          - not_null
+      - name: sale_date
+        description: "Date of the sale"
+        tests:
+          - not_null
+      - name: product
+        description: "Product sold"
+        tests:
+          - not_null
+      - name: region
+        description: "Sales region"
+        tests:
+          - not_null
+      - name: units_sold
+        description: "Number of units sold"
+        tests:
+          - not_null
+      - name: revenue
+        description: "Total revenue generated"
+        tests:
+          - not_null
+      - name: unit_price
+        description: "Calculated price per unit"
+      - name: loaded_at
+        description: "Timestamp when record was loaded"
+        tests:
+          - not_null 

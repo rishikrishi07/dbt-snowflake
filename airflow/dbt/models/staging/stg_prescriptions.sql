@@ -1,5 +1,5 @@
 -- stg_prescriptions.sql
--- Staging model for Prescription data
+-- Staging model for prescriptions written by HCPs
 
 {{
     config(
@@ -8,11 +8,12 @@
 }}
 
 with source as (
-    select * from {{ ref('prescriptions') }}
+    select * from {{ source('public', 'prescriptions') }}
 ),
 
 renamed as (
     select
+        
         hcp_id,
         product,
         year_month,

@@ -1,5 +1,5 @@
 -- stg_medical_representatives.sql
--- Staging model for Medical Representatives
+-- Staging model for Medical Sales Representatives
 
 {{
     config(
@@ -8,7 +8,7 @@
 }}
 
 with source as (
-    select * from {{ ref('medical_representatives') }}
+    select * from {{ source('public', 'medical_representatives') }}
 ),
 
 renamed as (

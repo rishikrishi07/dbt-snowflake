@@ -165,6 +165,17 @@ with DAG(
         env_vars=env_vars
     )
     
+    # 6. Run dbt seed to load daily sales data
+    load_daily_sales = DbtSeedOperator(
+        task_id='load_daily_sales',
+        project_dir='/opt/airflow/dbt',
+        profiles_dir='/opt/airflow/dbt',
+        select=['daily_sales'],
+        full_refresh=True,
+        target='dev',
+        env_vars=env_vars
+    )
+    
     # Set up task dependencies
     get_connection >> dbt_debug >> start_seeds
     
@@ -176,5 +187,6 @@ with DAG(
         load_medical_representatives,
         load_prescriptions,
         load_products,
-        load_territories
+        load_territories,
+        load_daily_sales
     ] >> end_seeds 

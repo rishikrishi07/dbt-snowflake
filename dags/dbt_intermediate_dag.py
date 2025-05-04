@@ -94,7 +94,7 @@ with DAG(
         task_id='run_int_hcp_enriched',
         project_dir='/opt/airflow/dbt',
         profiles_dir='/opt/airflow/dbt',
-        select='int_hcp_enriched',
+        models=['int_hcp_enriched'],
         target='dev',
         env_vars={
             'DBT_SNOWFLAKE_ACCOUNT': "{{ task_instance.xcom_pull(task_ids='get_snowflake_connection')['account'] }}",
@@ -112,7 +112,7 @@ with DAG(
         task_id='run_int_hcp_visits_enriched',
         project_dir='/opt/airflow/dbt',
         profiles_dir='/opt/airflow/dbt',
-        select='int_hcp_visits_enriched',
+        models=['int_hcp_visits_enriched'],
         target='dev',
         env_vars={
             'DBT_SNOWFLAKE_ACCOUNT': "{{ task_instance.xcom_pull(task_ids='get_snowflake_connection')['account'] }}",
@@ -130,7 +130,7 @@ with DAG(
         task_id='run_int_prescriptions_enriched',
         project_dir='/opt/airflow/dbt',
         profiles_dir='/opt/airflow/dbt',
-        select='int_prescriptions_enriched',
+        models=['int_prescriptions_enriched'],
         target='dev',
         env_vars={
             'DBT_SNOWFLAKE_ACCOUNT': "{{ task_instance.xcom_pull(task_ids='get_snowflake_connection')['account'] }}",
@@ -148,7 +148,7 @@ with DAG(
         task_id='test_intermediate_models',
         project_dir='/opt/airflow/dbt',
         profiles_dir='/opt/airflow/dbt',
-        select='intermediate',
+        models=['intermediate'],
         target='dev',
         env_vars={
             'DBT_SNOWFLAKE_ACCOUNT': "{{ task_instance.xcom_pull(task_ids='get_snowflake_connection')['account'] }}",

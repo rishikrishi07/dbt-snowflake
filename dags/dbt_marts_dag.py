@@ -97,7 +97,7 @@ with DAG(
         task_id='run_dim_hcp',
         project_dir='/opt/airflow/dbt',
         profiles_dir='/opt/airflow/dbt',
-        select='dim_hcp',
+        models=['dim_hcp'],
         target='dev',
         env_vars={
             'DBT_SNOWFLAKE_ACCOUNT': "{{ task_instance.xcom_pull(task_ids='get_snowflake_connection')['account'] }}",
@@ -115,7 +115,7 @@ with DAG(
         task_id='run_fct_visits',
         project_dir='/opt/airflow/dbt',
         profiles_dir='/opt/airflow/dbt',
-        select='fct_visits',
+        models=['fct_visits'],
         target='dev',
         env_vars={
             'DBT_SNOWFLAKE_ACCOUNT': "{{ task_instance.xcom_pull(task_ids='get_snowflake_connection')['account'] }}",
@@ -133,7 +133,7 @@ with DAG(
         task_id='run_fct_prescriptions',
         project_dir='/opt/airflow/dbt',
         profiles_dir='/opt/airflow/dbt',
-        select='fct_prescriptions',
+        models=['fct_prescriptions'],
         target='dev',
         env_vars={
             'DBT_SNOWFLAKE_ACCOUNT': "{{ task_instance.xcom_pull(task_ids='get_snowflake_connection')['account'] }}",
@@ -151,7 +151,7 @@ with DAG(
         task_id='test_marts_models',
         project_dir='/opt/airflow/dbt',
         profiles_dir='/opt/airflow/dbt',
-        select='marts',
+        models=['marts'],
         target='dev',
         env_vars={
             'DBT_SNOWFLAKE_ACCOUNT': "{{ task_instance.xcom_pull(task_ids='get_snowflake_connection')['account'] }}",

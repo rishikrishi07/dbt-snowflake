@@ -1,5 +1,5 @@
 -- stg_hcp_visits.sql
--- Staging model for Healthcare Professional Visits
+-- Staging model for HCP visit records
 
 {{
     config(
@@ -8,7 +8,7 @@
 }}
 
 with source as (
-    select * from {{ ref('hcp_visits') }}
+    select * from {{ source('public', 'hcp_visits') }}
 ),
 
 renamed as (
@@ -21,8 +21,8 @@ renamed as (
         duration_minutes,
         outcome,
         engagement_score,
-        products_discussed,
-        notes
+        notes,
+        products_discussed
     from source
 )
 

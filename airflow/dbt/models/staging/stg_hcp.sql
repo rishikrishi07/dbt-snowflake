@@ -8,7 +8,7 @@
 }}
 
 with source as (
-    select * from {{ ref('hcp_master') }}
+    select * from {{ source('public', 'hcp_master') }}
 ),
 
 renamed as (

@@ -57,7 +57,7 @@ enriched_prescriptions as (
     left join hcp_source h
         on p.hcp_id = h.hcp_id
     left join product_source pr
-        on p.product = pr.product
+        on p.product = pr.product_name
 )
 
 select * from enriched_prescriptions 

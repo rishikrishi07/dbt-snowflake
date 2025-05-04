@@ -44,4 +44,5 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
-*.swo 
+*.swo jaffle_shop/
+dbt_docs/

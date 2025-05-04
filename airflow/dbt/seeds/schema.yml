@@ -2,99 +2,45 @@ version: 2
 
 seeds:
   - name: hcp_master
-    description: "Healthcare provider master data containing demographic and professional information"
+    description: >
+      Healthcare Provider (HCP) master data containing information about healthcare
+      providers including their specialties, locations, and potential scores.
+      This is the primary source of truth for healthcare provider information.
     columns:
       - name: hcp_id
-        description: "Unique identifier for healthcare provider"
+        description: Unique identifier for the healthcare provider
+        tests:
+          - unique
+          - not_null
       - name: first_name
-        description: "Healthcare provider's first name"
+        description: First name of the healthcare provider
       - name: last_name
-        description: "Healthcare provider's last name"
+        description: Last name of the healthcare provider
       - name: specialty
-        description: "Medical specialty of the healthcare provider"
-      - name: practice_name
-        description: "Name of the healthcare provider's practice"
+        description: Medical specialty of the healthcare provider (e.g., Cardiologist, Pediatrician)
+      - name: facility
+        description: Type of facility where the healthcare provider practices (e.g., Hospital, Clinic)
+      - name: years_of_practice
+        description: Number of years the healthcare provider has been practicing medicine
+        data_type: integer
       - name: state
-        description: "State where the healthcare provider practices"
-      - name: territory_id
-        description: "Territory identifier linked to territories table"
-
-  - name: hcp_visits
-    description: "Record of medical representative visits to healthcare providers"
-    columns:
-      - name: visit_id
-        description: "Unique identifier for the visit"
-      - name: hcp_id
-        description: "Foreign key linking to the healthcare provider"
-      - name: mr_id
-        description: "Medical representative identifier who made the visit"
-      - name: visit_date
-        description: "Date when the visit occurred"
-      - name: visit_type
-        description: "Type of visit (e.g., in-person, virtual)"
-      - name: product_discussed
-        description: "Primary product discussed during the visit"
-      - name: visit_outcome
-        description: "Outcome code of the visit"
-
-  - name: medical_representatives
-    description: "Medical sales representatives information and territory assignments"
-    columns:
-      - name: mr_id
-        description: "Unique identifier for the medical representative"
-      - name: first_name
-        description: "Medical representative's first name"
-      - name: last_name
-        description: "Medical representative's last name"
+        description: US state abbreviation where the healthcare provider is located
+      - name: city
+        description: City where the healthcare provider is located
+      - name: zip_code
+        description: ZIP code of the healthcare provider's practice location
       - name: email
-        description: "Email contact for the medical representative"
+        description: Email address of the healthcare provider
       - name: phone
-        description: "Phone number for the medical representative"
+        description: Phone number of the healthcare provider
       - name: territory_id
-        description: "Territory assignment for the medical representative"
-      - name: hire_date
-        description: "Date when the representative was hired"
-
-  - name: prescriptions
-    description: "Prescription data for products by healthcare providers over time"
-    columns:
-      - name: hcp_id
-        description: "Healthcare provider who wrote the prescription"
-      - name: product
-        description: "Product that was prescribed"
-      - name: year_month
-        description: "Year and month of the prescription data (YYYY-MM format)"
-      - name: total_prescriptions
-        description: "Total number of prescriptions written in the period"
-      - name: total_patients
-        description: "Total number of unique patients prescribed to"
-      - name: new_patients
-        description: "Number of new patients prescribed to"
-
-  - name: products
-    description: "Product catalog with therapeutic area classifications"
-    columns:
-      - name: product_id
-        description: "Unique identifier for the product"
-      - name: product_name
-        description: "Name of the pharmaceutical product"
-      - name: therapeutic_area
-        description: "Therapeutic area the product belongs to"
-      - name: launch_date
-        description: "Date when the product was launched"
-      - name: status
-        description: "Current status of the product (active, discontinued, etc.)"
-
-  - name: territories
-    description: "Sales territory definitions and hierarchy"
-    columns:
-      - name: territory_id
-        description: "Unique identifier for the territory"
-      - name: territory_name
-        description: "Name of the sales territory"
-      - name: region
-        description: "Region the territory belongs to"
-      - name: district
-        description: "District within the region"
-      - name: manager_id
-        description: "ID of the manager responsible for the territory" 
+        description: Territory ID the healthcare provider belongs to for sales organization purposes
+      - name: potential_score
+        description: Score representing the prescription potential of the healthcare provider (range 1-100)
+        data_type: integer
+      - name: influence_score
+        description: Score representing the healthcare provider's influence in their field (range 1-10)
+        data_type: integer
+      - name: created_at
+        description: Date when the healthcare provider record was created in the system
+        data_type: date 

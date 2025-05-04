@@ -1,5 +1,5 @@
 -- stg_territories.sql
--- Staging model for Territories
+-- Staging model for sales territories
 
 {{
     config(
@@ -8,7 +8,7 @@
 }}
 
 with source as (
-    select * from {{ ref('territories') }}
+    select * from {{ source('public', 'territories') }}
 ),
 
 renamed as (
@@ -17,7 +17,7 @@ renamed as (
         territory_name,
         region,
         states,
-        potential_value
+        potential_value,
     from source
 )
 

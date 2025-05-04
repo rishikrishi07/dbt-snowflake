@@ -98,7 +98,7 @@ with DAG(
         task_id='run_stg_hcp_master',
         project_dir='/opt/airflow/dbt',
         profiles_dir='/opt/airflow/dbt',
-        select='stg_hcp_master',
+        models=['stg_hcp'],
         target='dev',
         env_vars={
             'DBT_SNOWFLAKE_ACCOUNT': "{{ task_instance.xcom_pull(task_ids='get_snowflake_connection')['account'] }}",
@@ -116,7 +116,7 @@ with DAG(
         task_id='run_stg_hcp_visits',
         project_dir='/opt/airflow/dbt',
         profiles_dir='/opt/airflow/dbt',
-        select='stg_hcp_visits',
+        models=['stg_hcp_visits'],
         target='dev',
         env_vars={
             'DBT_SNOWFLAKE_ACCOUNT': "{{ task_instance.xcom_pull(task_ids='get_snowflake_connection')['account'] }}",
@@ -134,7 +134,7 @@ with DAG(
         task_id='run_stg_medical_reps',
         project_dir='/opt/airflow/dbt',
         profiles_dir='/opt/airflow/dbt',
-        select='stg_medical_representatives',
+        models=['stg_medical_representatives'],
         target='dev',
         env_vars={
             'DBT_SNOWFLAKE_ACCOUNT': "{{ task_instance.xcom_pull(task_ids='get_snowflake_connection')['account'] }}",
@@ -152,7 +152,7 @@ with DAG(
         task_id='run_stg_prescriptions',
         project_dir='/opt/airflow/dbt',
         profiles_dir='/opt/airflow/dbt',
-        select='stg_prescriptions',
+        models=['stg_prescriptions'],
         target='dev',
         env_vars={
             'DBT_SNOWFLAKE_ACCOUNT': "{{ task_instance.xcom_pull(task_ids='get_snowflake_connection')['account'] }}",
@@ -170,7 +170,7 @@ with DAG(
         task_id='run_stg_products',
         project_dir='/opt/airflow/dbt',
         profiles_dir='/opt/airflow/dbt',
-        select='stg_products',
+        models=['stg_products'],
         target='dev',
         env_vars={
             'DBT_SNOWFLAKE_ACCOUNT': "{{ task_instance.xcom_pull(task_ids='get_snowflake_connection')['account'] }}",
@@ -188,7 +188,7 @@ with DAG(
         task_id='run_stg_territories',
         project_dir='/opt/airflow/dbt',
         profiles_dir='/opt/airflow/dbt',
-        select='stg_territories',
+        models=['stg_territories'],
         target='dev',
         env_vars={
             'DBT_SNOWFLAKE_ACCOUNT': "{{ task_instance.xcom_pull(task_ids='get_snowflake_connection')['account'] }}",
@@ -206,7 +206,7 @@ with DAG(
         task_id='test_staging_models',
         project_dir='/opt/airflow/dbt',
         profiles_dir='/opt/airflow/dbt',
-        select='staging',
+        models=['staging'],
         target='dev',
         env_vars={
             'DBT_SNOWFLAKE_ACCOUNT': "{{ task_instance.xcom_pull(task_ids='get_snowflake_connection')['account'] }}",
